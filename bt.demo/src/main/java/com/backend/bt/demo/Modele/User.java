@@ -20,6 +20,9 @@ public class User {
     @Column(name="email")
     private String email;
 
+    @Column(name="password")
+    private String password;
+
     public int getUser_id() {
         return user_id;
     }
@@ -52,6 +55,14 @@ public class User {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -59,6 +70,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

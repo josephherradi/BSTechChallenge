@@ -7,4 +7,5 @@ public interface UserService {
     public User saveUser(User theUser);
     public User get(int theId);
     public void delete(int theId);
+    public User getbyName(String identifiant);
 }

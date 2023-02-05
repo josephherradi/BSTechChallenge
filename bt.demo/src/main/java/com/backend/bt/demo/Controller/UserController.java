@@ -43,6 +43,13 @@ public class UserController {
 
         return "redirect:/login";
     }
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        System.out.println(session.getAttribute("user")+" is disconnected");
+        session.invalidate();
+
+        return "redirect:/login";
 
 
+    }
 }

@@ -31,7 +31,7 @@ public class UserController {
                 session.setAttribute("theUser",registredId);
                 System.out.println(identifiant +" is connected");
 
-                return "redirect:/recipes";
+                return "logged";
 
             } else {
 
@@ -41,14 +41,14 @@ public class UserController {
 
         }
 
-        return "redirect:/login";
+        return "logged";
     }
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpSession session) {
         System.out.println(session.getAttribute("user")+" is disconnected");
         session.invalidate();
 
-        return "redirect:/login";
+        return "disconnected";
 
 
     }

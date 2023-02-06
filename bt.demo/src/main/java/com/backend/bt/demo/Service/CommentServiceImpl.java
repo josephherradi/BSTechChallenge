@@ -5,6 +5,8 @@ import com.backend.bt.demo.Modele.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentServiceImpl implements  CommentService{
     @Autowired
@@ -26,5 +28,10 @@ public class CommentServiceImpl implements  CommentService{
     public void delete(int theId) {
         commentDAO.deleteById(theId);
 
+    }
+
+    @Override
+    public List<Comment> commentsListperRecipe(int id) {
+        return commentDAO.finByRecipe(id);
     }
 }

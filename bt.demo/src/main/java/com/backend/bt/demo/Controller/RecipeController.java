@@ -1,6 +1,7 @@
 package com.backend.bt.demo.Controller;
 
 
+import com.backend.bt.demo.Controller.exceptions.RecipeExceptions;
 import com.backend.bt.demo.Modele.Recipe;
 import com.backend.bt.demo.Service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +31,10 @@ public class RecipeController {
 
 
     @PostMapping(value="/saveRecipe")
-    public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe theRecipe){
+    public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe theRecipe,HttpSession session, HttpServletRequest request){
+        String utilisateur= (String) request.getSession().getAttribute("user");
+        theRecipe.setChef_name(utilisateur);
+
         Recipe newRecipe=recipeService.saveRecipe(theRecipe);
         return new ResponseEntity<Recipe>(newRecipe, HttpStatus.CREATED);
     }
@@ -41,24 +47,42 @@ public class RecipeController {
     }
 
     @PutMapping("/recipe/{id}")
-    public ResponseEntity<Recipe> updateRecipe (@PathVariable int id, @RequestBody Recipe recipe){
+    public ResponseEntity<Recipe> updateRecipe (@PathVariable int id, @RequestBody Recipe recipe, HttpSession session, HttpServletRequest request){
+        String utilisateur= (String) request.getSession().getAttribute("user");
+
         Recipe recipe1=recipeService.get(id);
-        recipe1.setChef_name(recipe.getChef_name());
-        recipe1.setDescription(recipe.getDescription());
-        recipe1.setKey_words(recipe.getKey_words());
-        recipe1.setName(recipe.getName());
-        Recipe updatedRecipe=recipeService.saveRecipe(recipe1);
-        return ResponseEntity.ok(updatedRecipe);
+        String chefName=recipe1.getChef_name();
+        System.out.println(chefName +" is chef /"+ utilisateur +"is connected user");
+
+        if(utilisateur.equalsIgnoreCase(chefName)){
+            recipe1.setDescription(recipe.getDescription());
+            recipe1.setKey_words(recipe.getKey_words());
+            recipe1.setName(recipe.getName());
+            Recipe updatedRecipe=recipeService.saveRecipe(recipe1);
+            return ResponseEntity.ok(updatedRecipe);
+        } else {
+                throw new RecipeExceptions("modification possible uniquement par le rédacteur");
+
+        }
 
     }
 
     @DeleteMapping("/recipe/{id}")
-    public ResponseEntity<Map<String,Boolean>> deleteRecipe(@PathVariable int id){
+    public ResponseEntity<Map<String,Boolean>> deleteRecipe(@PathVariable int id, HttpSession session, HttpServletRequest request){
+        String utilisateur= (String) request.getSession().getAttribute("user");
+
         Recipe recipe=recipeService.get(id);
-        recipeService.delete(id);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
+        String chefName=recipe.getChef_name();
+
+        if(utilisateur.equalsIgnoreCase(chefName)) {
+            recipeService.delete(id);
+            Map<String, Boolean> response = new HashMap<>();
+            response.put("deleted", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        } else {
+            throw new RecipeExceptions("modification possible uniquement par le rédacteur");
+        }
+
     }
 
 }

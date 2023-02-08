@@ -11,14 +11,17 @@ public class Comment {
     @Column(name="comment_id")
     private int comment_id;
 
-    @Column(name="recipe_id")
-    private int recipe_id;
-
-    @Column(name="user_id")
-    private int user_id;
 
     @Column(name="text")
     private String text;
+
+    @ManyToOne
+    @JoinColumn(name="recipe_id",updatable = false,insertable = false)
+    private Recipe recipe;
+
+    @ManyToOne
+    @JoinColumn(name="user_id",updatable = false,insertable = false)
+    private User user;
 
 
     public int getComment_id() {
@@ -29,21 +32,6 @@ public class Comment {
         this.comment_id = comment_id;
     }
 
-    public int getRecipe_id() {
-        return recipe_id;
-    }
-
-    public void setRecipe_id(int recipe_id) {
-        this.recipe_id = recipe_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
 
     public String getText() {
         return text;
@@ -53,13 +41,29 @@ public class Comment {
         this.text = text;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "comment_id=" + comment_id +
-                ", recipe_id=" + recipe_id +
-                ", user_id=" + user_id +
                 ", text='" + text + '\'' +
+                ", recipe=" + recipe +
+                ", user=" + user +
                 '}';
     }
 }

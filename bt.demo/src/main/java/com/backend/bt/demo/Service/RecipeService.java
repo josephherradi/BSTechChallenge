@@ -9,5 +9,4 @@ public interface RecipeService {
     public Recipe saveRecipe(Recipe theRecipe);
     public Recipe get(int theId);
     public void delete(int theId);
-    public List<Recipe> listRecipesPerKeyWords(String keywords);
 }

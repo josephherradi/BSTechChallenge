@@ -1,8 +1,10 @@
 package com.backend.bt.demo.Controller;
 
 import com.backend.bt.demo.Modele.Comment;
+import com.backend.bt.demo.Modele.Recipe;
 import com.backend.bt.demo.Modele.User;
 import com.backend.bt.demo.Service.CommentService;
+import com.backend.bt.demo.Service.RecipeService;
 import com.backend.bt.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,14 +21,17 @@ public class CommentController {
     private CommentService commentService;
 
     @Autowired
+    private RecipeService recipeService;
     private UserService userService;
 
     @PostMapping(value="/recipe/{id}/saveComment")
     public ResponseEntity<Comment> saveComment(@PathVariable int id, @RequestBody Comment comment, HttpSession session, HttpServletRequest request){
-        String utilisateur= (String) request.getSession().getAttribute("user");
-        User user=userService.getbyName(utilisateur);
-        Comment newComment=commentService.saveComment(user.getUser_id(),id,comment);
-        return new ResponseEntity<Comment>(comment, HttpStatus.CREATED);
+        User loggedUser=(User) request.getSession().getAttribute("theUser");
+        Recipe recipe=recipeService.get(id);
+        comment.setUser(loggedUser);
+        comment.setRecipe(recipe);
+        Comment newComment=commentService.saveComment(comment);
+        return new ResponseEntity<Comment>(newComment, HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/recipe/{id}/commentsList",method = RequestMethod.GET)

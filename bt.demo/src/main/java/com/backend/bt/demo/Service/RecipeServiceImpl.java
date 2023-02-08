@@ -34,8 +34,5 @@ public class RecipeServiceImpl implements RecipeService {
 
     }
 
-    @Override
-    public List<Recipe> listRecipesPerKeyWords(String keywords) {
-        return recipeDAO.findByKeywords(keywords);
-    }
+
 }

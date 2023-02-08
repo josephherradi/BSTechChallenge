@@ -1,6 +1,7 @@
 package com.backend.bt.demo.Modele;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="Recipe")
@@ -17,11 +18,13 @@ public class Recipe {
     @Column(name="description")
     private String description;
 
-    @Column(name="key_words")
-    private String key_words;
 
-    @Column(name="chef_name")
-    private String chef_name;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User chef;
+
+    @ManyToMany
+    private List<Ingredient> ingredients;
 
 
     public int getRecipe_id() {
@@ -48,20 +51,21 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getKey_words() {
-        return key_words;
+
+    public User getChef() {
+        return chef;
     }
 
-    public void setKey_words(String key_words) {
-        this.key_words = key_words;
+    public void setChef(User chef) {
+        this.chef = chef;
     }
 
-    public String getChef_name() {
-        return chef_name;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setChef_name(String chef_name) {
-        this.chef_name = chef_name;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     @Override
@@ -70,8 +74,8 @@ public class Recipe {
                 "recipe_id=" + recipe_id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", key_words='" + key_words + '\'' +
-                ", chef_name='" + chef_name + '\'' +
+                ", chef=" + chef +
+                ", ingredients=" + ingredients +
                 '}';
     }
 }

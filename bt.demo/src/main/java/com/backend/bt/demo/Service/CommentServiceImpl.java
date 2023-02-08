@@ -13,9 +13,7 @@ public class CommentServiceImpl implements  CommentService{
     private CommentDAO commentDAO;
 
     @Override
-    public Comment saveComment(Integer userId,Integer recipeId,Comment theComment) {
-        theComment.setRecipe_id(recipeId);
-        theComment.setUser_id(userId);
+    public Comment saveComment(Comment theComment) {
         return commentDAO.save(theComment);
     }
 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class CommentController {
     @Autowired
@@ -22,6 +23,8 @@ public class CommentController {
 
     @Autowired
     private RecipeService recipeService;
+
+    @Autowired
     private UserService userService;
 
     @PostMapping(value="/recipe/{id}/saveComment")

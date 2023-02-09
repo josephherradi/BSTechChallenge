@@ -2,6 +2,7 @@ package com.backend.bt.demo.Service;
 
 
 import com.backend.bt.demo.DAO.RecipeDAO;
+import com.backend.bt.demo.Modele.Ingredient;
 import com.backend.bt.demo.Modele.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class RecipeServiceImpl implements RecipeService {
     public void delete(int theId) {
         recipeDAO.deleteById(theId);
 
+    }
+
+    @Override
+    public List<Recipe> getByIngredients(List<Ingredient> ingredients) {
+        return recipeDAO.findByIngredients(ingredients);
     }
 
 

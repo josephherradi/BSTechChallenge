@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface RecipeDAO extends JpaRepository<Recipe,Integer> {
 
-
+@Query("select r from Recipe r where r.ingredients in :igList")
+    List<Recipe> findByIngredients(@Param("igList") List<Ingredient> ingredientList);
 }

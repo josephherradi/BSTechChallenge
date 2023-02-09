@@ -24,6 +24,7 @@ public class Recipe {
     private User chef;
 
     @ManyToMany
+    @JoinColumn(name="ingredient_id", updatable = false)
     private List<Ingredient> ingredients;
 
 

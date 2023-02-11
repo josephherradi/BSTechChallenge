@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Recipe } from '../Modele/recipe';
 import { RecipeService } from '../Service/recipe.service';
@@ -12,7 +13,7 @@ export class RecipeListComponent implements OnInit {
 
   recipes: Recipe [] ;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
     this.reloadData();
@@ -22,6 +23,10 @@ export class RecipeListComponent implements OnInit {
      this.recipeService.getRecipesList().subscribe(data => {
       this.recipes = data;});
   
+  }
+
+  recipeDetails(id: number){
+    this.router.navigate(['recipe-details',id])
   }
 
 

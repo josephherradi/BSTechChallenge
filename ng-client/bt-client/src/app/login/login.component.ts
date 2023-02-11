@@ -16,10 +16,14 @@ export class LoginComponent implements OnInit {
 
   }
 userlogin(){
-  this.userService.login(this.identifiant,this.password);
-}
+  this.userService.login(this.identifiant,this.password).subscribe(value => {
+    const submit = value
+    console.log(submit)});
+  }
 onSubmit(){
   this.userlogin();
   this.router.navigate(['recipes']);
 }
+
+
 }

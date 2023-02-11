@@ -9,7 +9,7 @@ import { RecipeListComponent } from "./recipe-list/recipe-list.component";
 const routes: Routes = [
     {path: 'ingredients', component: IngredientListComponent},
     {path: 'recipes', component: RecipeListComponent},
-    {path: 'recipe/:id', component: RecipeDetailsComponent},
+    {path: 'recipe-details/:id', component: RecipeDetailsComponent},
     {path: 'create-recipe', component: CreateRecipeComponent},
     {path: 'login', component: LoginComponent}
 
@@ -21,5 +21,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],                                                                                                                                                                                                                                                                                                          
     exports: [RouterModule]
   })
-  export class AppRoutingModule { }
+  export class AppRoutingModule {
+
+   }
   

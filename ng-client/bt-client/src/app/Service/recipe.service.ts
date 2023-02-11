@@ -21,7 +21,7 @@ export class RecipeService{
       }
     
       createRecipe(recipe: Object): Observable < Object > {
-        return this.http.post(`/saveRecipe`, recipe);
+        return this.http.post(`http://localhost:8082/saveRecipe`, recipe);
       }
     
       updateRecipe(id: number, value: any): Observable < Object > {

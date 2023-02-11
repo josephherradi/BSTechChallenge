@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
     constructor(private http: HttpClient) {}
 
     login(identifiant1: string, password1: string): Observable < any >  {
-        return this.http.post(`${this.baseUrl}/login?identifiant=${identifiant1}?password=${password1}`,{
+        return this.http.post(`${this.baseUrl}/login?identifiant=${identifiant1}&password=${password1}`,{
             responseType: 'text'
           });
 

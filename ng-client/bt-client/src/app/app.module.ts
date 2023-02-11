@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './login/login.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,ReactiveFormsModule  ],
+    HttpClientModule,ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

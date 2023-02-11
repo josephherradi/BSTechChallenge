@@ -7,19 +7,25 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { AppRoutingModule } from './app.routing.module';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeListComponent,
     IngredientListComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    CreateRecipeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,ReactiveFormsModule
-  ],
+    AppRoutingModule,
+    HttpClientModule,ReactiveFormsModule  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -14,9 +14,6 @@ public class Ingredient {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
-    @JoinColumn(name = "recipe_id")
-    private List<Recipe> recipes;
 
     public int getIngredient_id() {
         return ingredient_id;
@@ -34,13 +31,7 @@ public class Ingredient {
         this.name = name;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
+    
 
 }
 

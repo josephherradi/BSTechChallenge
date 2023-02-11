@@ -10,5 +10,5 @@ public interface RecipeService {
     public Recipe saveRecipe(Recipe theRecipe);
     public Recipe get(int theId);
     public void delete(int theId);
-    public List<Recipe> getByIngredients(List<Ingredient> ingredients);
+    public List<Recipe> getByIngredients(List<Integer> ingredients_id);
 }

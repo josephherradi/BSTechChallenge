@@ -24,7 +24,7 @@ public class Recipe {
     private User chef;
 
     @ManyToMany
-    @JoinColumn(name="ingredient_id", updatable = false)
+    @JoinColumn(name="ingredient_id")
     private List<Ingredient> ingredients;
 
 
@@ -69,14 +69,4 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "recipe_id=" + recipe_id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", chef=" + chef +
-                ", ingredients=" + ingredients +
-                '}';
-    }
 }

@@ -35,5 +35,11 @@ public class IngredientController {
 
     }
 
+    @RequestMapping(value = "recipesByIngredients", method = RequestMethod.GET)
+    public List<Recipe> recipesByIgd(@RequestParam("ingredients_id") List<Integer> ingredients_id){
+        List<Recipe> recipeBYIgdList= recipeService.getByIngredients(ingredients_id);
+        return recipeBYIgdList;
+
+    }
 
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Recipe } from '../Modele/recipe';
+import { RecipeService } from '../Service/recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeListComponent implements OnInit {
 
-  constructor() { }
+  recipes: Recipe [] ;
 
-  ngOnInit(): void {
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit() {
+    this.reloadData();
   }
+
+  reloadData() {
+     this.recipeService.getRecipesList().subscribe(data => {
+      this.recipes = data;});
+  
+  }
+
 
 }

@@ -14,8 +14,17 @@
           <tr *ngFor="let ingredient of ingredients">
             <td>{{ ingredient.ingredient_id }}</td>
             <td>{{ ingredient.name }}</td>
+            <td>
+                <button (click) = "getDataList" class = "btn btn-primary"> Update</button>
+                <button (click) = "getDataList" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+ 
+  
+
+
+  

@@ -9,25 +9,35 @@ import { RecipeService } from '../Service/recipe.service';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
+
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe [] ;
-
+  user: string;
+  session: Storage;
   constructor(private recipeService: RecipeService, private router: Router) {}
 
   ngOnInit() {
     this.reloadData();
+    this.session=this.sessionStorage;
+    this.user=this.session.getItem('loggedUser');
+    console.log(this.user)
+
+
   }
 
   reloadData() {
      this.recipeService.getRecipesList().subscribe(data => {
       this.recipes = data;});
+
   
   }
 
   recipeDetails(id: number){
     this.router.navigate(['recipe-details',id])
   }
-
+  get sessionStorage() {
+    return sessionStorage;
+}
 
 }

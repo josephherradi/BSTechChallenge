@@ -5,6 +5,7 @@ import com.backend.bt.demo.Controller.exceptions.RecipeExceptions;
 import com.backend.bt.demo.Modele.Recipe;
 import com.backend.bt.demo.Modele.User;
 import com.backend.bt.demo.Service.RecipeService;
+import com.backend.bt.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200",allowCredentials = "True")
 @RestController
 public class RecipeController {
     @Autowired
     private RecipeService recipeService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "recipes", method = RequestMethod.GET)
     public List<Recipe> listRecipes(){
@@ -33,7 +37,15 @@ public class RecipeController {
 
     @PostMapping(value="/saveRecipe")
     public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe theRecipe,HttpSession session, HttpServletRequest request){
-        User loggedUser=(User) request.getSession().getAttribute("theUser");
+        String loggedUser1=(String) request.getSession().getAttribute("theUser");
+        System.out.println(loggedUser1);
+        //pb loggedUser1  always null....
+        //User loggedUser= userService.getbyName(loggedUser1);
+
+        // har coded temp work around
+        User loggedUser=userService.getbyName("chef1");
+        //
+
         theRecipe.setChef(loggedUser);
         Recipe newRecipe=recipeService.saveRecipe(theRecipe);
         return new ResponseEntity<Recipe>(newRecipe, HttpStatus.CREATED);
@@ -48,7 +60,8 @@ public class RecipeController {
 
     @PutMapping("/recipe/{id}")
     public ResponseEntity<Recipe> updateRecipe (@PathVariable int id, @RequestBody Recipe recipe, HttpSession session, HttpServletRequest request){
-        User loggedUser=(User) request.getSession().getAttribute("theUser");
+        String loggedUser0=(String) request.getSession().getAttribute("theUser");
+        User loggedUser= userService.getbyName(loggedUser0);
 
         Recipe recipe1=recipeService.get(id);
         String chefName=recipe1.getChef().getName();
@@ -69,7 +82,8 @@ public class RecipeController {
 
     @DeleteMapping("/recipe/{id}")
     public ResponseEntity<Map<String,Boolean>> deleteRecipe(@PathVariable int id, HttpSession session, HttpServletRequest request){
-        User loggedUser=(User) request.getSession().getAttribute("theUser");
+        String loggedUser0=(String) request.getSession().getAttribute("theUser");
+        User loggedUser= userService.getbyName(loggedUser0);
 
         Recipe recipe=recipeService.get(id);
         String chefName=recipe.getChef().getName();

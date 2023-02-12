@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200",allowCredentials = "True")
 @RestController
 public class UserController {
     @Autowired
@@ -27,7 +27,8 @@ public class UserController {
             if(identifiant.equalsIgnoreCase(registredId) && password.equalsIgnoreCase(registredPwd)){
                 session.setAttribute("user",identifiant);
                 session.setAttribute("theUser",registredId);
-                System.out.println(identifiant +" is connected");
+                System.out.println(session.getAttribute("user") +" is connected");
+
 
                 return "logged";
 

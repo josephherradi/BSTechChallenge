@@ -11,6 +11,7 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './login/login.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 
 
 
@@ -21,14 +22,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     IngredientListComponent,
     RecipeDetailsComponent,
     CreateRecipeComponent,
-    LoginComponent
+    LoginComponent,
+    SearchRecipeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

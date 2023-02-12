@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './login/login.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 
 
@@ -23,7 +24,8 @@ import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
     RecipeDetailsComponent,
     CreateRecipeComponent,
     LoginComponent,
-    SearchRecipeComponent
+    SearchRecipeComponent,
+    UpdateRecipeComponent
   ],
   imports: [
     BrowserModule,

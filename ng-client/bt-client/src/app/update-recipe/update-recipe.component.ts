@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Ingredient } from '../Modele/ingredient';
 import { Recipe } from '../Modele/recipe';
@@ -7,23 +8,26 @@ import { IngredientService } from '../Service/ingredient.service';
 import { RecipeService } from '../Service/recipe.service';
 
 @Component({
-  selector: 'app-create-recipe',
-  templateUrl: './create-recipe.component.html',
-  styleUrls: ['./create-recipe.component.css']
+  selector: 'app-update-recipe',
+  templateUrl: './update-recipe.component.html',
+  styleUrls: ['./update-recipe.component.css']
 })
-export class CreateRecipeComponent implements OnInit {
-  recipe: Recipe = new Recipe();
-  ingredients: Observable<Ingredient[]>;
+export class UpdateRecipeComponent implements OnInit {
+id: number;
+recipe: Recipe=new Recipe();
+ingredients: Observable<Ingredient[]>;
   
-  submitted = false;
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
+submitted = false;
+dropdownList = [];
+selectedItems = [];
+dropdownSettings = {};
 
-  form: FormGroup;
-  constructor(private recipeService: RecipeService,private ingredientService: IngredientService ,private formBuilder: FormBuilder) { }
+form: FormGroup;
 
-  ngOnInit(){
+constructor(private recipeService: RecipeService, private route :ActivatedRoute,private ingredientService: IngredientService, private router: Router,private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+
     this.ingredientService.getIngredientsList().subscribe(ingredients =>{ 
       this.dropdownList=ingredients as Ingredient[];
     })
@@ -43,9 +47,23 @@ export class CreateRecipeComponent implements OnInit {
       name:[null,  [Validators.required, Validators.minLength(1)]],
       description:[null,  [Validators.required, Validators.minLength(1)]],
       ingredients: [null, [Validators.required]],
-      imageURL:[null]
+      imageURL:[null,  [Validators.required, Validators.minLength(0)]]
     });
        
+
+this.id=this.route.snapshot.params['id'];
+this.recipeService.getRecipe(this.id).subscribe(data => {
+  this.recipe = data;});
+
+  }
+
+  onSubmit(){
+    console.log(this.recipe.imageURL)
+    this.recipeService.updateRecipe(this.id,this.recipe).subscribe(data =>{
+      this.router.navigate(['recipes']);
+    }
+
+    )
   }
   onItemSelect(item: any) {
     console.log(item);
@@ -53,21 +71,5 @@ export class CreateRecipeComponent implements OnInit {
   onSelectAll(items: any) {
     console.log(items);
   }
-  newRecipe(): void{
-    this.submitted=false;
-    this.recipe=new Recipe();
-  }
-
-  save(){
-    this.recipeService.createRecipe(this.recipe).subscribe(data => 
-      console.log(data), error => console.log(error));
-    this.recipe = new Recipe();
-  }
-  onSubmit() {
-    this.submitted = true;
-    console.log(this.selectedItems)
-    this.save();
-  }
-
 
 }

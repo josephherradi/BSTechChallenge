@@ -14,12 +14,14 @@
               <input type="text" id="description" name="description" class="form-control" required  [(ngModel)]="recipe.description" formControlName="description">
             </div>
           </div>
+
           <div class="form-group">
             <div class="col-sm-12">
               <label for="name" class="control-label">Image URL</label>
-              <input type="text" id="imageURL" name="imageURL" class="form-control"  [(ngModel)]="recipe.imageURL" formControlName="imageURL">
+              <input type="text" id="imageURL" name="imageURL" class="form-control" required  [(ngModel)]="recipe.imageURL" formControlName="imageURL">
             </div>
           </div>
+      
 
       
         <div class="form-group">
@@ -46,8 +48,3 @@
       
       </form>
 </div>
-<div [hidden]="!submitted">
-  <h4>Success</h4>
-  <button class="btn btn-primary" (click)="newRecipe()">Create another recipe</button>
-</div>
-

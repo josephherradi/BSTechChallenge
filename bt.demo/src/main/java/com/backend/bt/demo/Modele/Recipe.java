@@ -27,6 +27,9 @@ public class Recipe {
     @JoinColumn(name="ingredient_id")
     private List<Ingredient> ingredients;
 
+    @Column(name="image_url")
+    private String imageURL;
+
 
     public int getRecipe_id() {
         return recipe_id;
@@ -69,4 +72,11 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

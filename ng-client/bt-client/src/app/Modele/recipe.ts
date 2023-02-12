@@ -6,7 +6,6 @@ export class Recipe{
     name: string;
     description: string;
     chef: User[];
-    ingredients: Ingredient[]
-
-
+    ingredients: Ingredient[];
+    imageURL: string
 }

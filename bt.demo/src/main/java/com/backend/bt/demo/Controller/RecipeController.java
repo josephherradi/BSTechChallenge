@@ -60,8 +60,14 @@ public class RecipeController {
 
     @PutMapping("/recipe/{id}")
     public ResponseEntity<Recipe> updateRecipe (@PathVariable int id, @RequestBody Recipe recipe, HttpSession session, HttpServletRequest request){
-        String loggedUser0=(String) request.getSession().getAttribute("theUser");
-        User loggedUser= userService.getbyName(loggedUser0);
+        //String loggedUser0=(String) request.getSession().getAttribute("theUser");
+        //User loggedUser= userService.getbyName(loggedUser0);
+        //pb loggedUser1  always null....
+        //User loggedUser= userService.getbyName(loggedUser1);
+
+        // har coded temp work around
+        User loggedUser=userService.getbyName("chef1");
+        //
 
         Recipe recipe1=recipeService.get(id);
         String chefName=recipe1.getChef().getName();
@@ -71,6 +77,8 @@ public class RecipeController {
             recipe1.setDescription(recipe.getDescription());
             recipe1.setIngredients(recipe.getIngredients());
             recipe1.setName(recipe.getName());
+            recipe1.setImageURL(recipe.getImageURL());
+
             Recipe updatedRecipe=recipeService.saveRecipe(recipe1);
             return ResponseEntity.ok(updatedRecipe);
         } else {
@@ -82,8 +90,14 @@ public class RecipeController {
 
     @DeleteMapping("/recipe/{id}")
     public ResponseEntity<Map<String,Boolean>> deleteRecipe(@PathVariable int id, HttpSession session, HttpServletRequest request){
-        String loggedUser0=(String) request.getSession().getAttribute("theUser");
-        User loggedUser= userService.getbyName(loggedUser0);
+        //String loggedUser0=(String) request.getSession().getAttribute("theUser");
+        //User loggedUser= userService.getbyName(loggedUser0);
+        //pb loggedUser1  always null....
+        //User loggedUser= userService.getbyName(loggedUser1);
+
+        // har coded temp work around
+        User loggedUser=userService.getbyName("chef1");
+        //
 
         Recipe recipe=recipeService.get(id);
         String chefName=recipe.getChef().getName();

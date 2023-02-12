@@ -13,6 +13,7 @@ import { RecipeService } from '../Service/recipe.service';
 export class RecipeListComponent implements OnInit {
 
   recipes: Recipe [] ;
+  strVar: string;
   user: string;
   session: Storage;
   constructor(private recipeService: RecipeService, private router: Router) {}
@@ -21,21 +22,32 @@ export class RecipeListComponent implements OnInit {
     this.reloadData();
     this.session=this.sessionStorage;
     this.user=this.session.getItem('loggedUser');
-    console.log(this.user)
 
 
   }
 
   reloadData() {
+    
      this.recipeService.getRecipesList().subscribe(data => {
       this.recipes = data;});
-
   
   }
 
   recipeDetails(id: number){
     this.router.navigate(['recipe-details',id])
   }
+
+  recipeUpdate(id: number){
+this.router.navigate(['update-recipe',id])
+  } 
+
+  recipeDelete(id: number){
+    this.recipeService.deleteRecipe(id).subscribe(data1 =>{
+      this.strVar=data1;
+      this.reloadData();
+    });
+    }
+
   get sessionStorage() {
     return sessionStorage;
 }

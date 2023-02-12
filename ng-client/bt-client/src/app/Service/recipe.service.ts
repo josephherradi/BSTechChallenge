@@ -19,7 +19,7 @@ export class RecipeService{
         return this.http.get(`${this.baseUrlRecipes}`)
     }
 
-    getRecipe(id: number): Observable < Object > {
+    getRecipe(id: number): Observable < any > {
         return this.http.get(`${this.baseUrlRecipe}/${id}`);
       }
     

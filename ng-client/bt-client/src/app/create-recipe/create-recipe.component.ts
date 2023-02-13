@@ -21,11 +21,19 @@ export class CreateRecipeComponent implements OnInit {
   dropdownSettings = {};
 
   form: FormGroup;
+  session: Storage;
+  user: string;
+
+
   constructor(private recipeService: RecipeService,private ingredientService: IngredientService ,private formBuilder: FormBuilder) { }
 
   ngOnInit(){
     this.ingredientService.getIngredientsList().subscribe(ingredients =>{ 
       this.dropdownList=ingredients as Ingredient[];
+
+      this.session=this.sessionStorage;
+      this.user=this.session.getItem('loggedUser');
+      console.log(this.user);
     })
   
     this.dropdownSettings = {
@@ -68,6 +76,8 @@ export class CreateRecipeComponent implements OnInit {
     console.log(this.selectedItems)
     this.save();
   }
-
+get sessionStorage() {
+    return sessionStorage;
+}
 
 }

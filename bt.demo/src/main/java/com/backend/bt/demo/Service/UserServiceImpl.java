@@ -49,4 +49,10 @@ public class UserServiceImpl implements UserService{
         return theUser;
     }
 
+    @Override
+    public List<User> allUsers() {
+        return userDAO.findAll();
+    }
+
+
 }

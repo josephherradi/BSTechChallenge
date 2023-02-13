@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
     private baseUrl = 'http://localhost:8082';
 
 
+
     constructor(private http: HttpClient) {}
 
     login(identifiant1: string, password1: string): Observable < any >  {
@@ -20,5 +21,16 @@ import { Observable } from "rxjs";
     logout(): Observable <any> {
         return this.http.get(`${this.baseUrl}/logout`)
 
+
     }
+
+    getUsersList(): Observable <any>{
+        return this.http.get(`${this.baseUrl}/users-list`)
+    }
+
+    createUser(user: Object): Observable <Object>{
+        return this.http.post(`http://localhost:8082/saveUser`, user,{withCredentials: true});
+    }
+
+
 }

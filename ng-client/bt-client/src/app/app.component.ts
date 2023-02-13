@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private userService: UserService, private router : Router){}
 
   ngOnInit(): void {
+    this.router.navigate(['login'])
 
   }
   

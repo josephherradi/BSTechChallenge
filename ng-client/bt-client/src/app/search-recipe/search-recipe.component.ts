@@ -76,8 +76,5 @@ this.recipeFound();
  recipeDetails(id: number){
   this.router.navigate(['recipe-details',id])
 }
-back(): void {
-  this.router.navigate([".."]);
-}
 
 }

@@ -13,6 +13,10 @@ import { LoginComponent } from './login/login.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { createComponent } from '@angular/compiler/src/core';
+import { CreateCommentComponent } from './create-comment/create-comment.component';
 
 
 
@@ -25,7 +29,10 @@ import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
     CreateRecipeComponent,
     LoginComponent,
     SearchRecipeComponent,
-    UpdateRecipeComponent
+    UpdateRecipeComponent,
+    UsersListComponent,
+    CreateUserComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,47 @@
+<div [hidden]="submitted" style="width: 350px;">
+    <form (ngSubmit)="onSubmit()" name="form1" id="form1" class="form-horizontal" [formGroup]="form" >
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <label for="name" class="control-label">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required  [(ngModel)]="user.name" formControlName="name" >
+          </div>
+        </div>
+      
+        <div class="form-group">
+            <div class="col-sm-12">
+              <label for="name" class="control-label">role</label>
+              <input type="text" id="role" name="role" class="form-control" required  [(ngModel)]="user.role" list="roles" formControlName="role" >
+              <datalist id="roles" >
+                <option>Chef</option>
+                <option>User</option>
+                <option>Admin</option>
+              </datalist>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="name" class="control-label">email</label>
+              <input type="text" id="email" name="email" class="form-control"  [(ngModel)]="user.email"  formControlName="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <label for="name" class="control-label">password</label>
+              <input type="text" id="password" name="password" class="form-control"  [(ngModel)]="user.password" formControlName="password" type="password">
+            </div>
+          </div>
+
+      
+        
+      
+        <button type="submit" class="btn btn-primary" >
+          Submit
+        </button>
+      
+      </form>
+</div>
+<div [hidden]="!submitted">
+  <h4>Success</h4>
+  <button class="btn btn-primary" (click)="newUser()">Create another recipe</button>
+</div>

@@ -16,11 +16,11 @@ public class Comment {
     private String text;
 
     @ManyToOne
-    @JoinColumn(name="recipe_id",updatable = false,insertable = false)
+    @JoinColumn(name="recipe_id")
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name="user_id",updatable = false,insertable = false)
+    @JoinColumn(name="user_id")
     private User user;
 
 

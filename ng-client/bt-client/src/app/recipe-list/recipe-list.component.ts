@@ -22,6 +22,7 @@ export class RecipeListComponent implements OnInit {
     this.reloadData();
     this.session=this.sessionStorage;
     this.user=this.session.getItem('loggedUser');
+    console.log(this.user);
 
 
   }
@@ -51,5 +52,7 @@ this.router.navigate(['update-recipe',id])
   get sessionStorage() {
     return sessionStorage;
 }
-
+recipeComment(id: number){
+this.router.navigate([`recipe/${id}/create-comment`]);
+}
 }

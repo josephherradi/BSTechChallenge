@@ -4,6 +4,7 @@ import { Ingredient } from '../Modele/ingredient';
 import { Recipe } from '../Modele/recipe';
 import { RecipeService } from '../Service/recipe.service';
 import {Location} from '@angular/common';
+import { CommentService } from '../Service/comment.service';
 
 
 @Component({
@@ -15,8 +16,10 @@ export class RecipeDetailsComponent implements OnInit {
   id: number
   ingredients: Ingredient[]
   recipe: Recipe=new Recipe();
+  comment: any;
+  comments: any;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router, private _location: Location ) { }
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router, private _location: Location , private commentService: CommentService) { }
 
   ngOnInit(): void {
     this.reloadData();
@@ -35,9 +38,14 @@ export class RecipeDetailsComponent implements OnInit {
     })
     this.recipeService.getRecipe(this.id).subscribe(data0=>{
       this.recipe=data0;
-      console.log(this.recipe)
-
     })
+  this.getComments(this.id);
+  }
+  getComments(id:number){
+    this.commentService.getCommentsByRecipe(this.id).subscribe(data1=>{
+      this.comments=data1;
+    })
+
   }
   
 }

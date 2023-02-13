@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "True")
 @RestController
@@ -61,6 +62,12 @@ public class UserController {
 
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
 
+    }
+
+    @RequestMapping(value="users-list",method = RequestMethod.GET)
+    public List<User> usersList(){
+        List<User> userList= userService.allUsers();
+        return userList;
     }
 
 }

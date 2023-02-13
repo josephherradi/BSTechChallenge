@@ -1,6 +1,7 @@
 # BS Tech Challenge
 La solution technique proposée comprend:
-* Une API Rest qui implémente la logique métier, l'accès et la lecture des données et le routage URI.
+* Une API Rest (bt.demo) qui implémente la logique métier, l'accès et la lecture des données et le routage URI.
+* Un client web (ng-client)
 
 
 ## Tehnologies utilisées:
@@ -9,35 +10,29 @@ La solution technique proposée comprend:
 * Spring Boot data jpa
 * Maven
 * mySQL 5.6.41 (login: root, pwd=)
-* IntelliJ 2018.2
 * Apache Tomcat (embeded)
+* Angular 9 (installé localement)
+* Bootstrap & Jquery
 
 
 
-## Lancer les modules à l'aide du plugin Maven
+## Lancer l'API à l'aide du plugin Maven
 
 Il est possible de compiler et d'executer rapidement l'application avec la commande suivante maven
 
 ```
 mvn spring-boot:run
 ```
+## Lancer le client angular
 
-## Compiler en JAR
-
-La compilation des livrables se fait avec la commande suivante à l'aide de maven selon la balise <packaging>jar</packaging> du pom.xml
+Dans ng-client/bt-client, lancer
 ```
-mvn clean package
-```
-
-## Lancer les modules compilés JAR
-Le lancement le backend  Rest se fait par la commande suivante
-```
-java -jar backend-rest.jar
+npx ng serve
 ```
 
 ## URLs
 
-L'Api rest  est déployée sur le port 8082
+L'Api rest  est déployée sur le port 8082, le client sur le port 4200
 
 ## Auteur
 

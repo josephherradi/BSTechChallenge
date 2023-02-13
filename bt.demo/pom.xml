@@ -15,8 +15,11 @@
 	<description>bt.demo</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<spring.version>5.3.23</spring.version>
+		<email.version>1.6.2</email.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -41,6 +44,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${email.version}</version>
+		</dependency>
+
 
 
 	</dependencies>

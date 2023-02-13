@@ -3,18 +3,20 @@ package com.backend.bt.demo.Controller;
 import com.backend.bt.demo.Modele.User;
 import com.backend.bt.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200",allowCredentials = "True")
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String login(@RequestParam("identifiant") String identifiant, @RequestParam("password") String password, HttpSession session){
@@ -51,4 +53,14 @@ public class UserController {
 
 
     }
+
+    @PostMapping(value="saveUser")
+    public ResponseEntity<User> createUser(@RequestBody User theUser){
+        User newUser=userService.saveUser(theUser);
+
+
+        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+
+    }
+
 }

@@ -42,7 +42,7 @@ public class RecipeController {
         //pb loggedUser1  always null....
         //User loggedUser= userService.getbyName(loggedUser1);
 
-        // har coded temp work around
+        // hard coded temp work around
         User loggedUser=userService.getbyName("chef1");
         //
 
@@ -65,7 +65,7 @@ public class RecipeController {
         //pb loggedUser1  always null....
         //User loggedUser= userService.getbyName(loggedUser1);
 
-        // har coded temp work around
+        // hard coded temp work around
         User loggedUser=userService.getbyName("chef1");
         //
 
@@ -95,7 +95,7 @@ public class RecipeController {
         //pb loggedUser1  always null....
         //User loggedUser= userService.getbyName(loggedUser1);
 
-        // har coded temp work around
+        // hardcoded temp work around
         User loggedUser=userService.getbyName("chef1");
         //
 

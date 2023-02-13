@@ -29,7 +29,11 @@ public class CommentController {
 
     @PostMapping(value="/recipe/{id}/saveComment")
     public ResponseEntity<Comment> saveComment(@PathVariable int id, @RequestBody Comment comment, HttpSession session, HttpServletRequest request){
-        User loggedUser=(User) request.getSession().getAttribute("theUser");
+        //nor working null ...
+        //User loggedUser=(User) request.getSession().getAttribute("theUser");
+
+        // hardcoded temp work around
+        User loggedUser=userService.getbyName("user1");
         Recipe recipe=recipeService.get(id);
         comment.setUser(loggedUser);
         comment.setRecipe(recipe);

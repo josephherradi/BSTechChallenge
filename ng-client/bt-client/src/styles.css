@@ -13,3 +13,8 @@
     width: 50%;
     padding: 10px;
   }
+
+  html {
+    display: flex;
+    justify-content: center;
+}
